@@ -27,18 +27,30 @@ class SchedulePencahayaanController extends Controller
         }
 
         try {
-            $data = $request->all();
-            $post = SchedulePencahayaan::create($data);
-            $response = [
-                'message' => 'Post apar berhasil',
-                'sukses' => 1,
-                'data' => null
-            ];
+            $kode = explode("n", $request->kode_pencahayaan);
+            if (is_countable($kode) && count($kode) > 0) {
+                foreach ($kode as $key => $val) {
+                    $data = array(
+                        'kode_pencahayaan' => $kode[$key],
+                        'tw' => $request->tw,
+                        'tahun' => $request->tahun,
+                        'tanggal_cek' => $request->tanggal_cek
+                    );
+                    SchedulePencahayaan::create($data);
+                }
+                $response = [
+                    'message' => 'Post pencahayaan berhasil',
+                    'sukses' => 1,
+                    'data' => null
+                ];
 
-            return response()->json($response, Response::HTTP_CREATED);
+                return response()->json($response, Response::HTTP_CREATED);
+            }
+            // $rrr = [$rr];
+
         } catch (QueryException $e) {
             $response = [
-                'message' => 'Post apar gagal',
+                'message' => 'Post pencahayaan gagal',
                 'status' => 0,
                 'data' => $e->errorInfo
             ];
@@ -56,7 +68,7 @@ class SchedulePencahayaanController extends Controller
             ->get();
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post pencahayaan berhasil',
             'data' => $data
         ];
 
@@ -74,7 +86,7 @@ class SchedulePencahayaanController extends Controller
             ->get();
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post pencahayaan berhasil',
             'data' => $data
         ];
 
@@ -96,7 +108,7 @@ class SchedulePencahayaanController extends Controller
 
         $edit = DB::table('schedule_pencahayaans')->where('id', $request->id)->update($data);
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post pencahayaan berhasil',
             'sukses' => 1,
             'data' => null
         ];
@@ -108,7 +120,7 @@ class SchedulePencahayaanController extends Controller
     {
         $hapus = SchedulePencahayaan::where('id', $request->id)->delete();
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post pencahayaan berhasil',
             'sukses' => 1,
             'data' => null
         ];
@@ -132,7 +144,7 @@ class SchedulePencahayaanController extends Controller
             ->update(['is_status' => 3]);
 
         $response = [
-            'message' => 'Update apar berhasil',
+            'message' => 'Update pencahayaan berhasil',
             'sukses' => 1,
             'data' => null
         ];
@@ -205,7 +217,7 @@ class SchedulePencahayaanController extends Controller
             ->get();
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post pencahayaan berhasil',
             'data' => $data
         ];
 

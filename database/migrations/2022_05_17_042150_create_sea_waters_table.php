@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('tw');
             $table->string('tahun');
             $table->string('hari');
-            $table->date('tanggal_cek')->nullable();
+            $table->string('tanggal_cek')->nullable();
             $table->string('shift')->nullable();
             $table->integer('is_status')->default(0);
             //motor drive

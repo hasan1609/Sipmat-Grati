@@ -14,20 +14,71 @@ class SeaWaterController extends Controller
 {
     public function insert_seawater(Request $request)
     {
+        if ($request->tw == "I") {
+            $date1 = "01-01-" . $request->tahun . "";
+            $date2 = "30-03-" . $request->tahun . "";
+        } elseif ($request->tw == "II") {
+            $date1 = "01-04-" . $request->tahun . "";
+            $date2 = "30-06-" . $request->tahun . "";
+        } elseif ($request->tw == "III") {
+            $date1 = "01-07-" . $request->tahun . "";
+            $date2 = "30-09-" . $request->tahun . "";
+        } else {
+            $date1 = "01-10-" . $request->tahun . "";
+            $date2 = "30-12-" . $request->tahun . "";
+        }
 
+        if ($request->hari == "Minggu") {
+            $hari = 0;
+        } elseif ($request->hari == "Senin") {
+            $hari = 1;
+        } elseif ($request->hari == "Selasa") {
+            $hari = 2;
+        } elseif ($request->hari == "Rabu") {
+            $hari = 3;
+        } elseif ($request->hari == "Kamis") {
+            $hari = 4;
+        } elseif ($request->hari == "Jumat") {
+            $hari = 5;
+        } else {
+            $hari = 6;
+        }
+        // memecah bagian-bagian dari tanggal $date1
+        $pecahTgl1 = explode("-", $date1);
+        // membaca bagian-bagian dari $date1
+        $tgl1 = $pecahTgl1[0];
+        $bln1 = $pecahTgl1[1];
+        $thn1 = $pecahTgl1[2];
+        // counter looping
+        $i = 0;
+        // counter untuk jumlah hari minggu
         try {
-            $data = $request->all();
-            $post = SeaWater::create($data);
-            $response = [
-                'message' => 'Post sea water berhasil',
-                'sukses' => 1,
-                'data' => null
-            ];
-
+            do {
+                // mengenerate tanggal berikutnya
+                $tanggal = date("d-m-Y", mktime(0, 0, 0, $bln1, $tgl1 + $i, $thn1));
+                // cek jika harinya minggu, maka counter $sum bertambah satu, lalu tampilkan tanggalnya
+                if (date("w", mktime(0, 0, 0, $bln1, $tgl1 + $i, $thn1)) == $hari) {
+                    // $ar = explode("‘", "‘", $tangal);
+                    $data = [
+                        'tanggal_cek' => $tanggal,
+                        'tw' => $request->tw,
+                        'tahun' => $request->tahun,
+                        'hari' => $request->hari
+                    ];
+                    SeaWater::create($data);
+                    $response = [
+                        'message' => 'Post ffblok berhasil',
+                        'sukses' => 1,
+                        'data' => null
+                    ];
+                }
+                // increment untuk counter looping
+                $i++;
+            } while ($tanggal != $date2);
             return response()->json($response, Response::HTTP_CREATED);
         } catch (QueryException $e) {
             $response = [
-                'message' => 'Post sea water gagal',
+                'message' => 'Post ffblok gagal',
                 'status' => 0,
                 'data' => $e->errorInfo
             ];
@@ -41,7 +92,7 @@ class SeaWaterController extends Controller
 
         $data = SeaWater::where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
-            ->orderBy('tanggal_cek', 'desc')
+            ->orderBy('tanggal_cek', 'asc')
             ->get();
 
         $response = [
@@ -69,7 +120,7 @@ class SeaWaterController extends Controller
         $data = SeaWater::where('is_status', 0)
             ->orWhere('is_status', 1)
             ->orWhere('is_status', 3)
-            ->orderBy('tanggal_cek', 'desc')
+            ->orderBy('tanggal_cek', 'asc')
             ->get();
 
         $response = [

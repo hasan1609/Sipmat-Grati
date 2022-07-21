@@ -28,18 +28,30 @@ class ScheduleHydrantController extends Controller
         }
 
         try {
-            $data = $request->all();
-            $post = ScheduleHydrant::create($data);
-            $response = [
-                'message' => 'Post apar berhasil',
-                'sukses' => 1,
-                'data' => null
-            ];
+            $kode = explode("n", $request->kode_hydrant);
+            if (is_countable($kode) && count($kode) > 0) {
+                foreach ($kode as $key => $val) {
+                    $data = array(
+                        'kode_hydrant' => $kode[$key],
+                        'tw' => $request->tw,
+                        'tahun' => $request->tahun,
+                        'tanggal_cek' => $request->tanggal_cek
+                    );
+                    ScheduleHydrant::create($data);
+                }
+                $response = [
+                    'message' => 'Post hydrant berhasil',
+                    'sukses' => 1,
+                    'data' => null
+                ];
 
-            return response()->json($response, Response::HTTP_CREATED);
+                return response()->json($response, Response::HTTP_CREATED);
+            }
+            // $rrr = [$rr];
+
         } catch (QueryException $e) {
             $response = [
-                'message' => 'Post apar gagal',
+                'message' => 'Post hydrant gagal',
                 'status' => 0,
                 'data' => $e->errorInfo
             ];
@@ -59,7 +71,7 @@ class ScheduleHydrantController extends Controller
             ->get();
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post hydrant berhasil',
             'data' => $data
         ];
 
@@ -102,7 +114,7 @@ class ScheduleHydrantController extends Controller
 
         $edit = DB::table('schedule_hydrants')->where('id', $request->id)->update($data);
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post hydrant berhasil',
             'sukses' => 1,
             'data' => null
         ];
@@ -133,7 +145,7 @@ class ScheduleHydrantController extends Controller
             ->get();
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post hydrant berhasil',
             'data' => $data
         ];
 
@@ -180,7 +192,7 @@ class ScheduleHydrantController extends Controller
             ->update(['is_status' => 3]);
 
         $response = [
-            'message' => 'Update apar berhasil',
+            'message' => 'Update hydrant berhasil',
             'sukses' => 1,
             'data' => null
         ];

@@ -12,6 +12,6 @@ class ScheduleHydrant extends Model
 
     public function hydrant()
     {
-        return $this->belongsTo(Hydrant::class,'kode_hydrant','kode');
+        return $this->belongsTo(Hydrant::class, 'kode_hydrant', 'kode');
     }
 }

@@ -27,15 +27,27 @@ class ScheduleApatController extends Controller
         }
 
         try {
-            $data = $request->all();
-            $post = ScheduleApat::create($data);
-            $response = [
-                'message' => 'Post apat berhasil',
-                'sukses' => 1,
-                'data' => null
-            ];
+            $kode = explode("n", $request->kode_apat);
+            if (is_countable($kode) && count($kode) > 0) {
+                foreach ($kode as $key => $val) {
+                    $data = array(
+                        'kode_apat' => $kode[$key],
+                        'tw' => $request->tw,
+                        'tahun' => $request->tahun,
+                        'tanggal_cek' => $request->tanggal_cek
+                    );
+                    ScheduleApat::create($data);
+                }
+                $response = [
+                    'message' => 'Post apat berhasil',
+                    'sukses' => 1,
+                    'data' => null
+                ];
 
-            return response()->json($response, Response::HTTP_CREATED);
+                return response()->json($response, Response::HTTP_CREATED);
+            }
+            // $rrr = [$rr];
+
         } catch (QueryException $e) {
             $response = [
                 'message' => 'Post apat gagal',
@@ -127,12 +139,12 @@ class ScheduleApatController extends Controller
         $data = ScheduleApat::where('is_status', 0)
             ->orWhere('is_status', 1)
             ->orWhere('is_status', 3)
-            ->with('apar')
+            ->with('apat')
             ->orderBy('tanggal_cek', 'desc')
             ->get();
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post apat berhasil',
             'data' => $data
         ];
 
@@ -179,7 +191,7 @@ class ScheduleApatController extends Controller
             ->update(['is_status' => 3]);
 
         $response = [
-            'message' => 'Update apar berhasil',
+            'message' => 'Update apat berhasil',
             'sukses' => 1,
             'data' => null
         ];

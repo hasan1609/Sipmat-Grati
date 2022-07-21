@@ -12,11 +12,11 @@ class ScheduleApat extends Model
 
     public function apar()
     {
-        return $this->belongsTo(Apat::class,'kode_apat','kode');
+        return $this->belongsTo(Apat::class, 'kode_apat', 'kode');
     }
 
     public function apat()
     {
-        return $this->belongsTo(Apat::class,'kode_apat','kode');
+        return $this->belongsTo(Apat::class, 'kode_apat', 'kode');
     }
 }

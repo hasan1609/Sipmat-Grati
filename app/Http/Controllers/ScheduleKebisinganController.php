@@ -27,18 +27,30 @@ class ScheduleKebisinganController extends Controller
         }
 
         try {
-            $data = $request->all();
-            $post = ScheduleKebisingan::create($data);
-            $response = [
-                'message' => 'Post apar berhasil',
-                'sukses' => 1,
-                'data' => null
-            ];
+            $kode = explode("n", $request->kode_kebisingan);
+            if (is_countable($kode) && count($kode) > 0) {
+                foreach ($kode as $key => $val) {
+                    $data = array(
+                        'kode_kebisingan' => $kode[$key],
+                        'tw' => $request->tw,
+                        'tahun' => $request->tahun,
+                        'tanggal_cek' => $request->tanggal_cek
+                    );
+                    ScheduleKebisingan::create($data);
+                }
+                $response = [
+                    'message' => 'Post kebisingan berhasil',
+                    'sukses' => 1,
+                    'data' => null
+                ];
 
-            return response()->json($response, Response::HTTP_CREATED);
+                return response()->json($response, Response::HTTP_CREATED);
+            }
+            // $rrr = [$rr];
+
         } catch (QueryException $e) {
             $response = [
-                'message' => 'Post apar gagal',
+                'message' => 'Post kebisingan gagal',
                 'status' => 0,
                 'data' => $e->errorInfo
             ];
@@ -57,7 +69,7 @@ class ScheduleKebisinganController extends Controller
             ->get();
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post kebisingan berhasil',
             'data' => $data
         ];
 
@@ -68,7 +80,7 @@ class ScheduleKebisinganController extends Controller
     {
         $hapus = ScheduleKebisingan::where('id', $request->id)->delete();
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post kebisingan berhasil',
             'sukses' => 1,
             'data' => null
         ];
@@ -87,7 +99,7 @@ class ScheduleKebisinganController extends Controller
 
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post kebisingan berhasil',
             'data' => $data
         ];
 
@@ -109,7 +121,7 @@ class ScheduleKebisinganController extends Controller
 
         $edit = DB::table('schedule_kebisingans')->where('id', $request->id)->update($data);
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post kebisingan berhasil',
             'sukses' => 1,
             'data' => null
         ];
@@ -157,7 +169,7 @@ class ScheduleKebisinganController extends Controller
             ->update(['is_status' => 3]);
 
         $response = [
-            'message' => 'Update apar berhasil',
+            'message' => 'Update kebisingan berhasil',
             'sukses' => 1,
             'data' => null
         ];
@@ -175,7 +187,7 @@ class ScheduleKebisinganController extends Controller
             ->get();
 
         $response = [
-            'message' => 'Post apar berhasil',
+            'message' => 'Post kebisingan berhasil',
             'data' => $data
         ];
 

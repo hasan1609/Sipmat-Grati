@@ -12,6 +12,6 @@ class ScheduleKebisingan extends Model
 
     public function kebisingan()
     {
-        return $this->belongsTo(Kebisingan::class,'kode_kebisingan','kode');
+        return $this->belongsTo(Kebisingan::class, 'kode_kebisingan', 'kode');
     }
 }

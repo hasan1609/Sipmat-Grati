@@ -139,7 +139,7 @@ Route::get('/getschedule_pelaksana_pencahayaan', [SchedulePencahayaanController:
 //SewaWater
 Route::post('/seawater', [SeaWaterController::class, 'insert_seawater']);
 Route::post('/update_seawater', [SeaWaterController::class, 'update_seawater']);
-Route::get('/seawater/{tw?&tahun>}', [SeaWaterController::class, 'get_seawater']);
+Route::get('/seawater/{tw?&tahun}', [SeaWaterController::class, 'get_seawater']);
 Route::post('/hapus_seawater', [SeaWaterController::class, 'hapus_seawater']);
 Route::get('/seawater_pelaksana', [SeaWaterController::class, 'seawater_pelaksana']);
 Route::post('/return_seawater', [SeaWaterController::class, 'return_seawater']);

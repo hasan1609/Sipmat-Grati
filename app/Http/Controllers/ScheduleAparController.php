@@ -30,10 +30,11 @@ class ScheduleAparController extends Controller
         }
 
         try {
-            if (is_countable($request->kode_apar) && count($request->kode_apar) > 0) {
-                foreach ($request->kode_apar as $key => $val) {
+            $kode = explode("n", $request->kode_apar);
+            if (is_countable($kode) && count($kode) > 0) {
+                foreach ($kode as $key => $val) {
                     $data = array(
-                        'kode_apar' => $request->kode_apar[$key],
+                        'kode_apar' => $kode[$key],
                         'tw' => $request->tw,
                         'tahun' => $request->tahun,
                         'tanggal_cek' => $request->tanggal_cek

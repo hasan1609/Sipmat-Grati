@@ -52,51 +52,39 @@ class FFblok1Controller extends Controller
         // counter looping
         $i = 0;
         // counter untuk jumlah hari minggu
-        do {
-            // mengenerate tanggal berikutnya
-            $tanggal = date("d-m-Y", mktime(0, 0, 0, $bln1, $tgl1 + $i, $thn1));
-            // cek jika harinya minggu, maka counter $sum bertambah satu, lalu tampilkan tanggalnya
-            if (date("w", mktime(0, 0, 0, $bln1, $tgl1 + $i, $thn1)) == $hari) {
-                // $ar = explode("‘", "‘", $tangal);
-                $data = [
-                    'tanggal_cek' => $tanggal,
-                    'tw' => $request->tw,
-                    'tahun' => $request->tahun,
-                    'hari' => $request->hari
-                ];
-                FFBlok1::create($data);
-                $response = [
-                    'message' => 'Post ffblok berhasil',
-                    'sukses' => 1,
-                    'data' => null
-                ];
-            }
-            // increment untuk counter looping
-            $i++;
-        } while ($tanggal != $date2);
-        return response()->json($response, Response::HTTP_CREATED);
+        try {
+            do {
+                // mengenerate tanggal berikutnya
+                $tanggal = date("d-m-Y", mktime(0, 0, 0, $bln1, $tgl1 + $i, $thn1));
+                // cek jika harinya minggu, maka counter $sum bertambah satu, lalu tampilkan tanggalnya
+                if (date("w", mktime(0, 0, 0, $bln1, $tgl1 + $i, $thn1)) == $hari) {
+                    // $ar = explode("‘", "‘", $tangal);
+                    $data = [
+                        'tanggal_cek' => $tanggal,
+                        'tw' => $request->tw,
+                        'tahun' => $request->tahun,
+                        'hari' => $request->hari
+                    ];
+                    FFBlok1::create($data);
+                    $response = [
+                        'message' => 'Post ffblok berhasil',
+                        'sukses' => 1,
+                        'data' => null
+                    ];
+                }
+                // increment untuk counter looping
+                $i++;
+            } while ($tanggal != $date2);
+            return response()->json($response, Response::HTTP_CREATED);
+        } catch (QueryException $e) {
+            $response = [
+                'message' => 'Post ffblok gagal',
+                'status' => 0,
+                'data' => $e->errorInfo
+            ];
 
-
-        // mencari element array 0
-        // try {
-        //     $data = $request->all();
-        //     $post = FFBlok1::create($data);
-        //     $response = [
-        //         'message' => 'Post ffblok berhasil',
-        //         'sukses' => 1,
-        //         'data' => null
-        //     ];
-
-        //     return response()->json($response, Response::HTTP_CREATED);
-        // } catch (QueryException $e) {
-        //     $response = [
-        //         'message' => 'Post ffblok gagal',
-        //         'status' => 0,
-        //         'data' => $e->errorInfo
-        //     ];
-
-        //     return response()->json($response, Response::HTTP_OK);
-        // }
+            return response()->json($response, Response::HTTP_OK);
+        }
     }
 
     public function get_ffblok(Request $request)

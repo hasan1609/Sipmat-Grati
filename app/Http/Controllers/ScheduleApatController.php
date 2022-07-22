@@ -46,8 +46,6 @@ class ScheduleApatController extends Controller
 
                 return response()->json($response, Response::HTTP_CREATED);
             }
-            // $rrr = [$rr];
-
         } catch (QueryException $e) {
             $response = [
                 'message' => 'Post apat gagal',
@@ -136,11 +134,12 @@ class ScheduleApatController extends Controller
     //tambahan
     public function getschedule_pelaksana_apat()
     {
-        $data = ScheduleApat::where('is_status', 0)
-            ->orWhere('is_status', 1)
-            ->orWhere('is_status', 3)
-            ->with('apat')
-            ->orderBy('tanggal_cek', 'desc')
+        $tgl = date('Y-m-d');
+        $data = DB::table('schedule_apats')
+            ->select(['schedule_apats.*', 'apats.*'])
+            ->join('apats', 'apats.kode', '=', 'schedule_apats.kode_apat')
+            ->where('schedule_apats.tanggal_cek', $tgl)
+            ->whereNot('schedule_apats.is_status', 2)
             ->get();
 
         $response = [
@@ -229,8 +228,5 @@ class ScheduleApatController extends Controller
             'data' => url('/') . '/storage/csv/apat/apat.pdf'
         ];
         return response()->json($response, Response::HTTP_OK);
-
-
-        // return $pdf->download('itsolutionstuff.pdf');
     }
 }

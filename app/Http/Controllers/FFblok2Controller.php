@@ -117,7 +117,9 @@ class FFblok2Controller extends Controller
 
     public function ffblok_pelaksana()
     {
-        $data = FFBlok2::where('is_status', 0)
+        $tgl = date('Y-m-d');
+        $data = FFBlok2::where('tanggal_cek', $tgl)
+            ->orWhere('is_status', 0)
             ->orWhere('is_status', 1)
             ->orWhere('is_status', 3)
             ->orderBy('tanggal_cek', 'desc')

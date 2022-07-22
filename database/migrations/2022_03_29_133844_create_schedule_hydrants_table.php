@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('noozle')->nullable();
             $table->string('house_keeping')->nullable();
             $table->string('keterangan')->nullable();
+            $table->date('tanggal_pemeriksa')->nullable();
             $table->timestamps();
         });
     }

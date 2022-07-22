@@ -128,13 +128,12 @@ class ScheduleAparController extends Controller
     //tambahan
     public function getschedule_pelaksana(Request $request)
     {
+        $tgl = date('Y-m-d');
         $data = DB::table('schedule_apars')
             ->select(['schedule_apars.*', 'apars.lokasi'])
             ->join('apars', 'apars.kode', '=', 'schedule_apars.kode_apar')
-            ->where('schedule_apars.is_status', 0)
-            ->orWhere('schedule_apars.is_status', 1)
-            ->orWhere('schedule_apars.is_status', 3)
-            ->orderBy('tanggal_cek', 'desc')
+            ->where('schedule_apars.tanggal_cek', $tgl)
+            ->whereNot('schedule_apars.is_status', 2)
             ->get();
 
         $response = [

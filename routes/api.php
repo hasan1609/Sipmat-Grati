@@ -4,6 +4,7 @@ use App\Http\Controllers\AparController;
 use App\Http\Controllers\ApatController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FFblok1Controller;
+use App\Http\Controllers\FFblok2Controller;
 use App\Http\Controllers\HydrantController;
 use App\Http\Controllers\KebisinganController;
 use App\Http\Controllers\PencahayaanController;
@@ -155,3 +156,13 @@ Route::get('/ffblok_pelaksana', [FFblok1Controller::class, 'ffblok_pelaksana']);
 Route::post('/return_ffblok', [FFblok1Controller::class, 'return_ffblok']);
 Route::post('/acc_ffblok', [FFblok1Controller::class, 'acc_ffblok']);
 Route::post('/ffblok_pdf', [FFblok1Controller::class, 'ffblok_pdf']);
+
+//FFBLOK2
+Route::post('/schedule_ffblok2', [FFblok2Controller::class, 'insert_ffblok']);
+Route::post('/update_ffblok2', [FFblok2Controller::class, 'update_ffblok']);
+Route::get('/ffblok2/{tw?&tahun>}', [FFblok2Controller::class, 'get_ffblok']);
+Route::post('/hapus_ffblok2', [FFblok2Controller::class, 'hapus_ffblok']);
+Route::get('/ffblok2_pelaksana', [FFblok2Controller::class, 'ffblok_pelaksana']);
+Route::post('/return_ffblok2', [FFblok2Controller::class, 'return_ffblok']);
+Route::post('/acc_ffblok2', [FFblok2Controller::class, 'acc_ffblok']);
+Route::post('/ffblok2_pdf', [FFblok2Controller::class, 'ffblok_pdf']);

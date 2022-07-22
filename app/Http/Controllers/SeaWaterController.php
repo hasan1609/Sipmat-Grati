@@ -117,10 +117,9 @@ class SeaWaterController extends Controller
 
     public function seawater_pelaksana()
     {
-        $data = SeaWater::where('is_status', 0)
-            ->orWhere('is_status', 1)
-            ->orWhere('is_status', 3)
-            ->orderBy('tanggal_cek', 'asc')
+        $tgl = date('d-m-Y');
+        $data = SeaWater::where('tanggal_cek', '=', $tgl)
+            ->whereNot('is_status', 2)
             ->get();
 
         $response = [

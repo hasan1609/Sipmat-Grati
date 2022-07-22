@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('nilai_minimum_lux')->nullable();
             $table->string('sumber_pencahayaan')->nullable();
             $table->string('keterangan')->nullable();
+            $table->date('tanggal_pemeriksa')->nullable();
             $table->timestamps();
         });
     }

@@ -137,9 +137,9 @@ class ScheduleHydrantController extends Controller
     //tambahan
     public function getschedule_pelaksana_hydrant()
     {
-        $data = ScheduleHydrant::where('is_status', 0)
-            ->orWhere('is_status', 1)
-            ->orWhere('is_status', 3)
+        $tgl = date('Y-m-d');
+        $data = ScheduleHydrant::where('tanggal_cek', $tgl)
+            ->whereNot('schedule_hydrants.is_status', 2)
             ->with('hydrant')
             ->orderBy('tanggal_cek', 'desc')
             ->get();

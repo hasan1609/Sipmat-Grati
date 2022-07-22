@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('dbrata2')->nullable();
             $table->string('nab_kebisingan')->nullable();
             $table->string('keterangan')->nullable();
+            $table->date('tanggal_pemeriksa')->nullable();
             $table->timestamps();
         });
     }

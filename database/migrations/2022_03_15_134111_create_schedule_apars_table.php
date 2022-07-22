@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('gantungan')->nullable();
             $table->string('houskeeping')->nullable();
             $table->string('keterangan_tambahan')->nullable();
+            $table->date('tanggal_pemeriksa')->nullable();
             $table->timestamps();
         });
     }

@@ -209,9 +209,9 @@ class SchedulePencahayaanController extends Controller
 
     public function getschedule_pelaksana_pencahayaan()
     {
-        $data = SchedulePencahayaan::where('is_status', 0)
-            ->orWhere('is_status', 1)
-            ->orWhere('is_status', 3)
+        $tgl = date('Y-m-d');
+        $data = SchedulePencahayaan::where('tanggal_cek', $tgl)
+            ->whereNot('is_status', 2)
             ->with('pencahayaan')
             ->orderBy('tanggal_cek', 'desc')
             ->get();

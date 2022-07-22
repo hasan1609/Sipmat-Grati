@@ -179,9 +179,9 @@ class ScheduleKebisinganController extends Controller
 
     public function getschedule_pelaksana_kebisingan()
     {
-        $data = ScheduleKebisingan::where('is_status', 0)
-            ->orWhere('is_status', 1)
-            ->orWhere('is_status', 3)
+        $tgl = date('Y-m-d');
+        $data = ScheduleKebisingan::where('tanggal_cek', $tgl)
+            ->whereNot('is_status', 2)
             ->with('kebisingan')
             ->orderBy('tanggal_cek', 'desc')
             ->get();

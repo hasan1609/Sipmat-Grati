@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('tw');
             $table->string('tahun');
             $table->string('hari');
+            $table->date('tanggal_pemeriksa')->nullable();
             $table->string('tanggal_cek')->nullable();
             $table->string('shift')->nullable();
             $table->integer('is_status')->default(0);

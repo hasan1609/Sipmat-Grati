@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('sekop')->nullable();
             $table->string('gantungan')->nullable();
             $table->string('keterangan')->nullable();
+            $table->date('tanggal_pemeriksa')->nullable();
             $table->timestamps();
         });
     }

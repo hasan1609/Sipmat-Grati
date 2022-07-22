@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('tw');
             $table->string('tahun');
             $table->string('hari');
+            $table->date('tanggal_pemeriksa')->nullable();
             $table->string('tanggal_cek')->nullable();
             $table->string('shift')->nullable();
             $table->integer('is_status')->default(0);
-
             $table->string('start')->nullable();
             $table->string('stop')->nullable();
             $table->string('air_accu')->nullable();
@@ -46,7 +46,6 @@ return new class extends Migration
             $table->string('wiper')->nullable();
             $table->string('spion')->nullable();
             $table->string('sirine')->nullable();
-
             $table->string('catatan')->nullable();
 
             $table->timestamps();

@@ -117,13 +117,10 @@ class FFblok1Controller extends Controller
 
     public function ffblok_pelaksana()
     {
-        $tgl = date('Y-m-d');
+        $tgl = date('d-m-Y');
         $data = FFBlok1::where('tanggal_cek', $tgl)
-            ->orWhere('is_status', 0)
-            ->orWhere('is_status', 1)
-            ->orWhere('is_status', 3)
-            ->orderBy('tanggal_cek', 'desc')
-            ->get();
+        ->whereNot('is_status', 2)
+        ->get();
 
         $response = [
             'message' => 'Post ffblok berhasil',
@@ -157,8 +154,6 @@ class FFblok1Controller extends Controller
         if ($request->file('supervisor_ttd')) {
             $data['supervisor_ttd'] = $request->file('supervisor_ttd')->store('foto-ffblok', 'public');
         }
-
-        $data['tanggal_cek'] = date(now());
 
         $edit = FFBlok1::where('id', $request->id)->update($data);
         $response = [
@@ -225,19 +220,19 @@ class FFblok1Controller extends Controller
             ->first();
 
         $pdf = Pdf::loadView(
-            'ffblok.ffblok_pdf',
+            'ffblok1.ffblok1_pdf',
             [
-                'ffblok' => $data
+                'ffblok1' => $data
             ]
         )->setPaper('a4', 'potrait');
 
 
         $content = $pdf->download()->getOriginalContent();
-        Storage::put('public/csv/ffblok/ffblok.pdf', $content);
+        Storage::put('public/csv/ffblok1/ffblok1.pdf', $content);
         $response = [
-            'message' => 'sudah ffblok hari ini',
+            'message' => 'sudah ffblok1 hari ini',
             'status' => 1,
-            'data' => url('/') . '/storage/csv/ffblok/ffblok.pdf'
+            'data' => url('/') . '/storage/csv/ffblok1/ffblok1.pdf'
         ];
         return response()->json($response, Response::HTTP_OK);
     }

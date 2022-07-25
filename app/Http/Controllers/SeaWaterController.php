@@ -155,8 +155,6 @@ class SeaWaterController extends Controller
             $data['supervisor_ttd'] = $request->file('supervisor_ttd')->store('foto-seawater', 'public');
         }
 
-        $data['tanggal_cek'] = date(now());
-
         $edit = SeaWater::where('id', $request->id)->update($data);
         $response = [
             'message' => 'Post sea water berhasil',

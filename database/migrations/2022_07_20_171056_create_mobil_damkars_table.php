@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('level_minyak_rem')->nullable();
             $table->string('suara_mesin')->nullable();
             $table->string('lampu_depan')->nullable();
-            $table->string('lampu_belakan')->nullable();
+            $table->string('lampu_belakang')->nullable();
             $table->string('lampu_rem')->nullable();
             $table->string('lampu_sein_kanan_depan')->nullable();
             $table->string('lampu_sein_kanan_belakang')->nullable();

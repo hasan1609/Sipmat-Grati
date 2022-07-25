@@ -3,6 +3,9 @@
 use App\Http\Controllers\AparController;
 use App\Http\Controllers\ApatController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DamkarController;
+use App\Http\Controllers\EdgBlok1Controller;
+use App\Http\Controllers\EdgBlok2Controller;
 use App\Http\Controllers\FFblok1Controller;
 use App\Http\Controllers\FFblok2Controller;
 use App\Http\Controllers\HydrantController;
@@ -166,3 +169,33 @@ Route::get('/ffblok2_pelaksana', [FFblok2Controller::class, 'ffblok_pelaksana'])
 Route::post('/return_ffblok2', [FFblok2Controller::class, 'return_ffblok']);
 Route::post('/acc_ffblok2', [FFblok2Controller::class, 'acc_ffblok']);
 Route::post('/ffblok2_pdf', [FFblok2Controller::class, 'ffblok_pdf']);
+
+//EDGBLOK!
+Route::post('/schedule_edgblok1', [EdgBlok1Controller::class, 'insert_edgblok1']);
+Route::post('/update_edgblok1', [EdgBlok1Controller::class, 'update_edgblok1']);
+Route::get('/edgblok1/{tw?&tahun>}', [EdgBlok1Controller::class, 'get_edgblok1']);
+Route::post('/hapus_edgblok1', [EdgBlok1Controller::class, 'hapus_edgblok1']);
+Route::get('/edgblok1_pelaksana', [EdgBlok1Controller::class, 'edgblok1_pelaksana']);
+Route::post('/return_edgblok1', [EdgBlok1Controller::class, 'return_edgblok1']);
+Route::post('/acc_edgblok1', [EdgBlok1Controller::class, 'acc_edgblok1']);
+Route::post('/edgblok1_pdf', [EdgBlok1Controller::class, 'edgblok1_pdf']);
+
+// EDGBLOK2
+Route::post('/schedule_edgblok2', [EdgBlok2Controller::class, 'insert_edgblok2']);
+Route::post('/update_edgblok2', [EdgBlok2Controller::class, 'update_edgblok2']);
+Route::get('/edgblok2/{tw?&tahun>}', [EdgBlok2Controller::class, 'get_edgblok2']);
+Route::post('/hapus_edgblok2', [EdgBlok2Controller::class, 'hapus_edgblok2']);
+Route::get('/edgblok2_pelaksana', [EdgBlok2Controller::class, 'edgblok2_pelaksana']);
+Route::post('/return_edgblok2', [EdgBlok2Controller::class, 'return_edgblok2']);
+Route::post('/acc_edgblok2', [EdgBlok2Controller::class, 'acc_edgblok2']);
+Route::post('/edgblok2_pdf', [EdgBlok2Controller::class, 'edgblok2_pdf']);
+
+// DAMKAR
+Route::post('/schedule_damkar', [DamkarController::class, 'insert_damkar']);
+Route::post('/update_damkar', [DamkarController::class, 'update_damkar']);
+Route::get('/damkar/{tw?&tahun>}', [DamkarController::class, 'get_damkar']);
+Route::post('/hapus_damkar', [DamkarController::class, 'hapus_damkar']);
+Route::get('/damkar_pelaksana', [DamkarController::class, 'damkar_pelaksana']);
+Route::post('/return_damkar', [DamkarController::class, 'return_damkar']);
+Route::post('/acc_damkar', [DamkarController::class, 'acc_damkar']);
+Route::post('/damkar_pdf', [DamkarController::class, 'damkar_pdf']);

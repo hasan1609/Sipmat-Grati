@@ -134,6 +134,8 @@ class ScheduleApatController extends Controller
     //tambahan
     public function getschedule_pelaksana_apat()
     {
+        date_default_timezone_set("Asia/Jakarta");
+
         $tgl = date('Y-m-d');
         $data = DB::table('schedule_apats')
             ->select(['schedule_apats.*', 'apats.*'])

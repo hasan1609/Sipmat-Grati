@@ -117,6 +117,7 @@ class EdgBlok2Controller extends Controller
 
     public function edgblok2_pelaksana()
     {
+        date_default_timezone_set("Asia/Jakarta");
         $tgl = date('d-m-Y');
         $data = EdgBlok2::where('tanggal_cek', $tgl)
             ->whereNot('is_status', 2)
@@ -224,7 +225,7 @@ class EdgBlok2Controller extends Controller
             [
                 'edgblok2' => $data
             ]
-        )->setPaper('a4', 'potrait');
+        )->setPaper('f4', 'potrait');
 
 
         $content = $pdf->download()->getOriginalContent();
@@ -232,7 +233,7 @@ class EdgBlok2Controller extends Controller
         $response = [
             'message' => 'sudah edgblok2 hari ini',
             'status' => 1,
-            'data' => url('/') . '/storage/csv/edgblok2/edgblok.pdf'
+            'data' => url('/') . '/storage/csv/edgblok2/edgblok2.pdf'
         ];
         return response()->json($response, Response::HTTP_OK);
     }

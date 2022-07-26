@@ -179,6 +179,8 @@ class ScheduleKebisinganController extends Controller
 
     public function getschedule_pelaksana_kebisingan()
     {
+        date_default_timezone_set("Asia/Jakarta");
+
         $tgl = date('Y-m-d');
         $data = ScheduleKebisingan::where('tanggal_cek', $tgl)
             ->whereNot('is_status', 2)

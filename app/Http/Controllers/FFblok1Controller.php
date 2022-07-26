@@ -117,10 +117,12 @@ class FFblok1Controller extends Controller
 
     public function ffblok_pelaksana()
     {
+        date_default_timezone_set("Asia/Jakarta");
+
         $tgl = date('d-m-Y');
         $data = FFBlok1::where('tanggal_cek', $tgl)
-        ->whereNot('is_status', 2)
-        ->get();
+            ->whereNot('is_status', 2)
+            ->get();
 
         $response = [
             'message' => 'Post ffblok berhasil',

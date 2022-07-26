@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DamkarController;
 use App\Http\Controllers\EdgBlok1Controller;
 use App\Http\Controllers\EdgBlok2Controller;
+use App\Http\Controllers\EdgBlok3Controller;
 use App\Http\Controllers\FFblok1Controller;
 use App\Http\Controllers\FFblok2Controller;
 use App\Http\Controllers\HydrantController;
@@ -189,6 +190,16 @@ Route::get('/edgblok2_pelaksana', [EdgBlok2Controller::class, 'edgblok2_pelaksan
 Route::post('/return_edgblok2', [EdgBlok2Controller::class, 'return_edgblok2']);
 Route::post('/acc_edgblok2', [EdgBlok2Controller::class, 'acc_edgblok2']);
 Route::post('/edgblok2_pdf', [EdgBlok2Controller::class, 'edgblok2_pdf']);
+
+// EDGBLOK3
+Route::post('/schedule_edgblok3', [EdgBlok3Controller::class, 'insert_edgblok3']);
+Route::post('/update_edgblok3', [EdgBlok3Controller::class, 'update_edgblok3']);
+Route::get('/edgblok3/{tw?&tahun}', [EdgBlok3Controller::class, 'get_edgblok3']);
+Route::post('/hapus_edgblok3', [EdgBlok3Controller::class, 'hapus_edgblok3']);
+Route::get('/edgblok3_pelaksana', [EdgBlok3Controller::class, 'edgblok3_pelaksana']);
+Route::post('/return_edgblok3', [EdgBlok3Controller::class, 'return_edgblok3']);
+Route::post('/acc_edgblok3', [EdgBlok3Controller::class, 'acc_edgblok3']);
+Route::post('/edgblok3_pdf', [EdgBlok3Controller::class, 'edgblok3_pdf']);
 
 // DAMKAR
 Route::post('/schedule_damkar', [DamkarController::class, 'insert_damkar']);

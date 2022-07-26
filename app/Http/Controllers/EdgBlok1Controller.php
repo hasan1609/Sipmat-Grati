@@ -117,10 +117,11 @@ class EdgBlok1Controller extends Controller
 
     public function edgblok1_pelaksana()
     {
+        date_default_timezone_set("Asia/Jakarta");
         $tgl = date('d-m-Y');
         $data = EdgBlok1::where('tanggal_cek', $tgl)
-        ->whereNot('is_status', 2)
-        ->get();
+            ->whereNot('is_status', 2)
+            ->get();
 
         $response = [
             'message' => 'Post edgblok1 berhasil',

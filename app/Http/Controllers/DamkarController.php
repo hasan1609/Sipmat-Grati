@@ -117,6 +117,7 @@ class DamkarController extends Controller
 
     public function damkar_pelaksana()
     {
+        date_default_timezone_set("Asia/Jakarta");
         $tgl = date('d-m-Y');
         $data = MobilDamkar::where('tanggal_cek', $tgl)
             ->whereNot('is_status', 2)

@@ -209,6 +209,8 @@ class SchedulePencahayaanController extends Controller
 
     public function getschedule_pelaksana_pencahayaan()
     {
+        date_default_timezone_set("Asia/Jakarta");
+
         $tgl = date('Y-m-d');
         $data = SchedulePencahayaan::where('tanggal_cek', $tgl)
             ->whereNot('is_status', 2)

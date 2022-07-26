@@ -117,6 +117,8 @@ class SeaWaterController extends Controller
 
     public function seawater_pelaksana()
     {
+        date_default_timezone_set("Asia/Jakarta");
+
         $tgl = date('d-m-Y');
         $data = SeaWater::where('tanggal_cek', '=', $tgl)
             ->whereNot('is_status', 2)

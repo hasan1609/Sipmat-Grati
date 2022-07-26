@@ -137,6 +137,8 @@ class ScheduleHydrantController extends Controller
     //tambahan
     public function getschedule_pelaksana_hydrant()
     {
+        date_default_timezone_set("Asia/Jakarta");
+
         $tgl = date('Y-m-d');
         $data = ScheduleHydrant::where('tanggal_cek', $tgl)
             ->whereNot('schedule_hydrants.is_status', 2)

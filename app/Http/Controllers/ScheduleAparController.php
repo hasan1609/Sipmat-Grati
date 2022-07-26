@@ -128,6 +128,8 @@ class ScheduleAparController extends Controller
     //tambahan
     public function getschedule_pelaksana(Request $request)
     {
+        date_default_timezone_set("Asia/Jakarta");
+
         $tgl = date('Y-m-d');
         $data = DB::table('schedule_apars')
             ->select(['schedule_apars.*', 'apars.lokasi'])

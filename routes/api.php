@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AmbulanceController;
 use App\Http\Controllers\AparController;
 use App\Http\Controllers\ApatController;
 use App\Http\Controllers\AuthController;
@@ -59,13 +60,16 @@ Route::post('/updateapar', [AparController::class, 'updateapar']);
 Route::get('/cekapar/{kode?}', [AparController::class, 'cekapar']);
 Route::get('/apar_kadaluarsa', [AparController::class, 'apar_kadaluarsa']);
 Route::post('/apar_pdf', [AparController::class, 'apar_pdf']);
+Route::post('/updatekadaluarsa', [AparController::class, 'updatekadaluarsa']);
+
+
 
 //Schedule
 Route::post('/schedule_apar', [ScheduleAparController::class, 'store']);
 Route::get('/getschedule/{tw?&tahun?}', [ScheduleAparController::class, 'getschedule']);
 Route::get('/gethasil/{tw?&tahun?}', [ScheduleAparController::class, 'gethasil']);
 Route::get('/getschedule_pelaksana', [ScheduleAparController::class, 'getschedule_pelaksana']);
-Route::post('/update_schedule_apar', [ScheduleAparController::class, 'updateschedule']);
+Route::post('/update_schedule_apar/{id}', [ScheduleAparController::class, 'updateschedule']);
 Route::post('/acc_apar', [ScheduleAparController::class, 'acc_apar']);
 Route::post('/return_apar', [ScheduleAparController::class, 'return_apar']);
 Route::post('/hapus_schedule_apar', [ScheduleAparController::class, 'hapus_schedule_apar']);
@@ -209,4 +213,14 @@ Route::post('/hapus_damkar', [DamkarController::class, 'hapus_damkar']);
 Route::get('/damkar_pelaksana', [DamkarController::class, 'damkar_pelaksana']);
 Route::post('/return_damkar', [DamkarController::class, 'return_damkar']);
 Route::post('/acc_damkar', [DamkarController::class, 'acc_damkar']);
-Route::post('/damkar_pdf', [DamkarController::class, 'damkar_pdf']);
+Route::post('/damkar_pdf/{id}', [DamkarController::class, 'damkar_pdf']);
+
+// AMBULANCE
+Route::post('/schedule_ambulance', [AmbulanceController::class, 'insert_ambulance']);
+Route::post('/update_ambulance', [AmbulanceController::class, 'update_ambulance']);
+Route::get('/ambulance/{tw?&tahun>}', [AmbulanceController::class, 'get_ambulance']);
+Route::post('/hapus_ambulance', [AmbulanceController::class, 'hapus_ambulance']);
+Route::get('/ambulance_pelaksana', [AmbulanceController::class, 'ambulance_pelaksana']);
+Route::post('/return_ambulance', [AmbulanceController::class, 'return_ambulance']);
+Route::post('/acc_ambulance', [AmbulanceController::class, 'acc_ambulance']);
+Route::post('/ambulance_pdf/{id}', [AmbulanceController::class, 'ambulance_pdf']);

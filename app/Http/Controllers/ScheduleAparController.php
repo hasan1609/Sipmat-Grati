@@ -65,7 +65,7 @@ class ScheduleAparController extends Controller
     public function getschedule(Request $request)
     {
         $data = DB::table('schedule_apars')
-            ->select(['schedule_apars.*', 'apars.lokasi'])
+            ->select(['schedule_apars.*', 'apars.lokasi', 'apars.jenis'])
             ->join('apars', 'apars.kode', '=', 'schedule_apars.kode_apar')
             ->where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
@@ -87,6 +87,7 @@ class ScheduleAparController extends Controller
             ->join('apars', 'apars.kode', '=', 'schedule_apars.kode_apar')
             ->where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
             ->orderBy('tanggal_cek', 'desc')
             ->get();
 
@@ -98,13 +99,10 @@ class ScheduleAparController extends Controller
         return response()->json($response, Response::HTTP_CREATED);
     }
 
-    public function updateschedule(Request $request)
+    public function updateschedule(Request $request, $id)
     {
+        $apar = ScheduleApar::findOrFail($id);
         $validator = Validator::make($request->all(), [
-            'tw' => ['required'],
-            'tahun' => ['required'],
-            'tanggal_cek' => ['required'],
-            'id' => ['required'],
             'is_status' => ['required']
         ]);
 
@@ -115,7 +113,7 @@ class ScheduleAparController extends Controller
 
         $data = $request->all();
 
-        $edit = DB::table('schedule_apars')->where('id', $request->id)->update($data);
+        $apar->update($data);
         $response = [
             'message' => 'Post apar berhasil',
             'sukses' => 1,
@@ -131,11 +129,10 @@ class ScheduleAparController extends Controller
         date_default_timezone_set("Asia/Jakarta");
 
         $tgl = date('Y-m-d');
-        $data = DB::table('schedule_apars')
-            ->select(['schedule_apars.*', 'apars.lokasi'])
-            ->join('apars', 'apars.kode', '=', 'schedule_apars.kode_apar')
-            ->where('schedule_apars.tanggal_cek', $tgl)
+        $data = ScheduleApar::where('tanggal_cek', $tgl)
             ->whereNot('schedule_apars.is_status', 2)
+            ->with('apar')
+            ->orderBy('tanggal_cek', 'desc')
             ->get();
 
         $response = [

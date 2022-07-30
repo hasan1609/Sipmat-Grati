@@ -64,6 +64,7 @@ class SchedulePencahayaanController extends Controller
 
         $data = SchedulePencahayaan::where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
+            ->with('pencahayaan')
             ->orderBy('tanggal_cek', 'desc')
             ->get();
 
@@ -81,6 +82,7 @@ class SchedulePencahayaanController extends Controller
 
         $data = SchedulePencahayaan::where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
             ->with('pencahayaan')
             ->orderBy('tanggal_cek', 'desc')
             ->get();
@@ -104,8 +106,10 @@ class SchedulePencahayaanController extends Controller
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        $plus = $request->lux1 + $request->lux2 + $request->lux3;
+        $bagi = $plus / 3;
         $data = $request->all();
-
+        $data['luxrata2'] = $bagi;
         $edit = DB::table('schedule_pencahayaans')->where('id', $request->id)->update($data);
         $response = [
             'message' => 'Post pencahayaan berhasil',

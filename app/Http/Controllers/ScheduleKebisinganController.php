@@ -93,6 +93,7 @@ class ScheduleKebisinganController extends Controller
     {
         $data = ScheduleKebisingan::where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
+            // ->whereNot('is_status', 0)
             ->with('kebisingan')
             ->orderBy('tanggal_cek', 'desc')
             ->get();
@@ -117,8 +118,10 @@ class ScheduleKebisinganController extends Controller
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        $plus = $request->dbx1 + $request->dbx2 + $request->dbx3;
+        $bagi = $plus / 3;
         $data = $request->all();
-
+        $data['dbrata2'] = $bagi;
         $edit = DB::table('schedule_kebisingans')->where('id', $request->id)->update($data);
         $response = [
             'message' => 'Post kebisingan berhasil',

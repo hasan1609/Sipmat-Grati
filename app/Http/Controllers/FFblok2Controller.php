@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FFBlok1;
 use App\Models\FFBlok2;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
@@ -97,6 +98,24 @@ class FFblok2Controller extends Controller
 
         $response = [
             'message' => 'Get ffblok berhasil',
+            'data' => $data
+        ];
+
+        return response()->json($response, Response::HTTP_CREATED);
+    }
+
+    public function gethasil_ffblok(Request $request)
+    {
+
+        $data = FFBlok2::where('tw', $request->input('tw'))
+            ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
+
+            ->orderBy('tanggal_cek', 'asc')
+            ->get();
+
+        $response = [
+            'message' => 'Get sea water berhasil',
             'data' => $data
         ];
 

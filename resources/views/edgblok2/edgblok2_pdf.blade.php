@@ -175,7 +175,7 @@
         </tr>
         <tr>
             <td class="tg-9o1m">Current</td>
-            <td class="tg-9o1m">A</td>s
+            <td class="tg-9o1m">A</td>
             <td class="tg-9o1m">{{ $edgblok2->p_generator_current_sebelum_start }}</td>
             <td class="tg-9o1m">{{ $edgblok2->p_generator_current_sesudah_start }}</td>
         </tr>

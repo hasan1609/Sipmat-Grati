@@ -40,6 +40,8 @@ return new class extends Migration
             $table->string('tisu_kering')->nullable();
             $table->string('oxycan')->nullable();
             $table->string('tas_p3k')->nullable();
+            $table->string('catatan')->nullable();
+            $table->timestamps();
         });
     }
 

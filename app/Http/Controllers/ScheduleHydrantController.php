@@ -62,11 +62,9 @@ class ScheduleHydrantController extends Controller
 
     public function getschedule(Request $request)
     {
-        $data = DB::table('schedule_hydrants')
-            ->select(['schedule_hydrants.*', 'hydrants.lokasi'])
-            ->join('hydrants', 'hydrants.kode', '=', 'schedule_hydrants.kode_hydrant')
-            ->where('tw', $request->input('tw'))
+        $data = ScheduleHydrant::where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
+            ->with('hydrant')
             ->orderBy('tanggal_cek', 'desc')
             ->get();
 
@@ -83,6 +81,7 @@ class ScheduleHydrantController extends Controller
     {
         $data = ScheduleHydrant::where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
             ->with('hydrant')
             ->orderBy('tanggal_cek', 'desc')
             ->get();

@@ -87,6 +87,24 @@ class SeaWaterController extends Controller
         }
     }
 
+    public function gethasil_seawater(Request $request)
+    {
+
+        $data = SeaWater::where('tw', $request->input('tw'))
+            ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
+
+            ->orderBy('tanggal_cek', 'asc')
+            ->get();
+
+        $response = [
+            'message' => 'Get sea water berhasil',
+            'data' => $data
+        ];
+
+        return response()->json($response, Response::HTTP_CREATED);
+    }
+
     public function get_seawater(Request $request)
     {
 
@@ -102,6 +120,8 @@ class SeaWaterController extends Controller
 
         return response()->json($response, Response::HTTP_CREATED);
     }
+
+
 
     public function hapus_seawater(Request $request)
     {

@@ -59,11 +59,13 @@ class ScheduleApatController extends Controller
 
     public function getschedule(Request $request)
     {
-        $data = DB::table('schedule_apats')
-            ->select(['schedule_apats.*', 'apats.lokasi'])
-            ->join('apats', 'apats.kode', '=', 'schedule_apats.kode_apat')
-            ->where('tw', $request->input('tw'))
-            ->where('tahun', $request->input('tahun'))
+        date_default_timezone_set("Asia/Jakarta");
+
+        $tgl = date('Y-m-d');
+        $data = ScheduleApat::where('tw', $request->tw)
+            ->where('tahun', $request->tahun)
+            ->whereNot('schedule_apats.is_status', 2)
+            ->with('apat')
             ->orderBy('tanggal_cek', 'desc')
             ->get();
 
@@ -80,6 +82,7 @@ class ScheduleApatController extends Controller
     {
         $data = ScheduleApat::where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
             ->with('apat')
             ->orderBy('tanggal_cek', 'desc')
             ->get();
@@ -137,11 +140,9 @@ class ScheduleApatController extends Controller
         date_default_timezone_set("Asia/Jakarta");
 
         $tgl = date('Y-m-d');
-        $data = DB::table('schedule_apats')
-            ->select(['schedule_apats.*', 'apats.*'])
-            ->join('apats', 'apats.kode', '=', 'schedule_apats.kode_apat')
-            ->where('schedule_apats.tanggal_cek', $tgl)
+        $data = ScheduleApat::where('schedule_apats.tanggal_cek', $tgl)
             ->whereNot('schedule_apats.is_status', 2)
+            ->with('apat')
             ->get();
 
         $response = [

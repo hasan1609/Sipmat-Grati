@@ -171,4 +171,27 @@ class AparController extends Controller
 
         // return $pdf->download('itsolutionstuff.pdf');
     }
+
+    public function updatekadaluarsa(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'kode' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $data = $request->all();
+
+        $edit = DB::table('apars')->where('kode', $request->kode)->update($data);
+        $response = [
+            'message' => 'Post apar berhasil',
+            'sukses' => 1,
+            'data' => null
+        ];
+
+        return response()->json($response, Response::HTTP_CREATED);
+    }
 }

@@ -103,6 +103,24 @@ class FFblok1Controller extends Controller
         return response()->json($response, Response::HTTP_CREATED);
     }
 
+    public function gethasil_ffblok(Request $request)
+    {
+
+        $data = FFBlok1::where('tw', $request->input('tw'))
+            ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
+
+            ->orderBy('tanggal_cek', 'asc')
+            ->get();
+
+        $response = [
+            'message' => 'Get sea water berhasil',
+            'data' => $data
+        ];
+
+        return response()->json($response, Response::HTTP_CREATED);
+    }
+
     public function hapus_ffblok(Request $request)
     {
         $hapus = FFBlok1::where('id', $request->id)->delete();

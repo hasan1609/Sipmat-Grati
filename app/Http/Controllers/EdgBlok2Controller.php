@@ -103,6 +103,24 @@ class EdgBlok2Controller extends Controller
         return response()->json($response, Response::HTTP_CREATED);
     }
 
+    public function gethasil_edgblok2(Request $request)
+    {
+
+        $data = EdgBlok2::where('tw', $request->input('tw'))
+            ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
+
+            ->orderBy('tanggal_cek', 'asc')
+            ->get();
+
+        $response = [
+            'message' => 'Get sea water berhasil',
+            'data' => $data
+        ];
+
+        return response()->json($response, Response::HTTP_CREATED);
+    }
+
     public function hapus_edgblok2(Request $request)
     {
         $hapus = EdgBlok2::where('id', $request->id)->delete();

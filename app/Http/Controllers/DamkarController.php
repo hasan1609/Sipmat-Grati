@@ -103,6 +103,24 @@ class DamkarController extends Controller
         return response()->json($response, Response::HTTP_CREATED);
     }
 
+    public function gethasil_damkar(Request $request)
+    {
+
+        $data = MobilDamkar::where('tw', $request->input('tw'))
+            ->where('tahun', $request->input('tahun'))
+            ->whereNot('is_status', 0)
+
+            ->orderBy('tanggal_cek', 'asc')
+            ->get();
+
+        $response = [
+            'message' => 'Get sea water berhasil',
+            'data' => $data
+        ];
+
+        return response()->json($response, Response::HTTP_CREATED);
+    }
+
     public function hapus_damkar(Request $request)
     {
         $hapus = MobilDamkar::where('id', $request->id)->delete();
@@ -215,19 +233,23 @@ class DamkarController extends Controller
     }
 
 
-    public function damkar_pdf(Request $request)
+    public function damkar_pdf(Request $request, $id)
     {
-        $data = MobilDamkar::where('id', $request->id)
-            ->first();
+        $ekstensi = $request->file('foto')->getClientOriginalExtension();
+        $foto = $request->file('foto')->storeAs('public/ttd-damkar', 'damkar-ttd.png');
+        $data = MobilDamkar::findOrFail($id);
+
+        $jabatan = $request->jabatan;
+        $nama = $request->nama;
 
         $pdf = Pdf::loadView(
             'damkar.damkar_pdf',
             [
-                'damkar' => $data
+                'item' => $data,
+                'jabatan' => $jabatan,
+                'nama' => $nama
             ]
         )->setPaper('a4', 'potrait');
-
-
         $content = $pdf->download()->getOriginalContent();
         Storage::put('public/csv/damkar/damkar.pdf', $content);
         $response = [

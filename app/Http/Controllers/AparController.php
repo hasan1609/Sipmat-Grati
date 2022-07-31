@@ -184,6 +184,11 @@ class AparController extends Controller
         }
 
         $data = $request->all();
+        $time = strtotime($request->tgl_pengisian);
+        $tgl_sekarang = date('Y-m-d', $time);
+        $tgl_kadaluarsa = date('Y-m-d', strtotime($tgl_sekarang . '+3 years'));
+
+        $data['tgl_kadaluarsa'] = $tgl_kadaluarsa;
 
         $edit = DB::table('apars')->where('kode', $request->kode)->update($data);
         $response = [

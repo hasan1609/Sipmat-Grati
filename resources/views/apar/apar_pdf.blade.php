@@ -122,15 +122,15 @@
                 </b></td>
             <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
                 rowspan=2 align="center" valign=middle bgcolor="#FFC000"><b>
-                    <font size=1 color="#000000">KAP. (kg)</font>
-                </b></td>
-            <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
-                rowspan=2 align="center" valign=middle bgcolor="#FFC000"><b>
                     <font size=1 color="#000000">TANGGAL PENGISIAN</font>
                 </b></td>
             <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
                 rowspan=2 align="center" valign=middle bgcolor="#FFC000"><b>
                     <font size=1 color="#000000">TANGGAL KADALUARSA</font>
+                </b></td>
+            <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                rowspan=2 align="center" valign=middle bgcolor="#FFC000"><b>
+                    <font size=1 color="#000000">KAP. (kg)</font>
                 </b></td>
             <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
                 colspan=10 align="center" valign=middle bgcolor="#FFC000"><b>
@@ -212,16 +212,16 @@
                     <font color="#000000"><br>{{ $item->tanggal_pemeriksa }}</font>
                 </td>
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
-                    align="center" valign=middle bgcolor="#FFFFFF">
-                    <font color="#000000"><br>{{ $item->kapasitas }}</font>
-                </td>
-                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
                     align="center" valign=bottom sdnum="1033;0;MM/DD/YYYY">
                     <font color="#000000"><br>{{ $item->apar->tgl_pengisian }}</font>
                 </td>
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
                     align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;0;MM/DD/YYYY">
                     <font face="Arial" color="#000000"><br>{{ $item->apar->tgl_kadaluarsa }}</font>
+                </td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                    align="center" valign=middle bgcolor="#FFFFFF">
+                    <font color="#000000"><br>{{ $item->kapasitas }}</font>
                 </td>
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
                     align="center" valign=bottom>

@@ -82,8 +82,7 @@
                 <th class="tg-b6io" rowspan="2">SHIFT</th>
                 <th class="tg-9wq8" rowspan="2">TANGGAL<br> PENGUKURAN</th>
                 <th class="tg-b6io" colspan="4">HASIL PENGUKURAN (LUX)</th>
-                <th class="tg-b6io" rowspan="2">NILAI MINIMUM (LUX)</th>
-                <th class="tg-b6io" rowspan="2">SUMBER PENCAHAYAAN        (A= ALAMI, B= BUATAN)</th>
+                <th class="tg-b6io" rowspan="2">SUMBER PENCAHAYAAN (ALAMI,BUATAN,ALAMI DAN BUATAN)</th>
                 <th class="tg-b6io" rowspan="2">KETERANGAN TAMBAHAN</th>
             </tr>
             <tr>
@@ -95,34 +94,34 @@
         </thead>
         <tbody>
             @foreach ($data as $item)
-            <tr>
-                <td class="tg-b6io" colspan="5">{{$loop->iteration}}</td>
-                <td class="tg-b6io">{{$item->pencahayaan->lokasi}}</td>
-                <td class="tg-b6io">{{$item->pencahayaan->kode}}</td>
-                <td class="tg-b6io">{{$item->shift}}</td>
-                <td class="tg-9wq8">{{$item->tanggal_cek}}</td>
-                <td class="tg-b6io">{{$item->lux1}}</td>
-                <td class="tg-b6io">{{$item->lux2}}</td>
-                <td class="tg-b6io">{{$item->lux3}}</td>
-                <td class="tg-b6io">{{$item->luxrata2}}</td>
-                <td class="tg-b6io">{{$item->nilai_minimum_lux}}</td>
-                <td class="tg-b6io">{{$item->sumber_pencahayaan}}</td>
-                <td class="tg-b6io">{{$item->keterangan}}</td>
-            </tr>
-                
+                <tr>
+                    <td class="tg-b6io" colspan="5">{{ $loop->iteration }}</td>
+                    <td class="tg-b6io">{{ $item->pencahayaan->lokasi }}</td>
+                    <td class="tg-b6io">{{ $item->pencahayaan->kode }}</td>
+                    <td class="tg-b6io">{{ $item->shift }}</td>
+                    <td class="tg-9wq8">{{ $item->tanggal_cek }}</td>
+                    <td class="tg-b6io">{{ $item->lux1 }}</td>
+                    <td class="tg-b6io">{{ $item->lux2 }}</td>
+                    <td class="tg-b6io">{{ $item->lux3 }}</td>
+                    <td class="tg-b6io">{{ $item->luxrata2 }}</td>
+                    <td class="tg-b6io">{{ $item->sumber_pencahayaan }}</td>
+                    <td class="tg-b6io">{{ $item->keterangan }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>
-    <p><i><b>* Dasar Hukum : PERMEN NO. 7/1964 tentang Syarat Kesehatan, Kebersihan, serta Penerangan dalam Tempat Kerja</b></i></p>
+    <p><i><b>* Dasar Hukum : PERMEN NO. 7/1964 tentang Syarat Kesehatan, Kebersihan, serta Penerangan dalam Tempat
+                Kerja</b></i></p>
     <!-- ************************************************************************** -->
     <br><br>
 
     <table class="tg">
         <thead>
             <tr>
-                <td class="tg-wk8r" rowspan="4">Mengetahui<br><br>{{$jabatan}}<br><br><br>
-                    <img src="{{public_path('storage/ttd-pencahayaan/pencahayaan-ttd.png')}}" alt="Image" width="100" height="100">
-                    <br>{{$nama}}
+                <td class="tg-wk8r" rowspan="4">Mengetahui<br><br>{{ $jabatan }}<br><br><br>
+                    <img src="{{ public_path('storage/ttd-pencahayaan/pencahayaan-ttd.png') }}" alt="Image"
+                        width="100" height="100">
+                    <br>{{ $nama }}
                 </td>
             </tr>
             <tr>

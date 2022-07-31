@@ -93,7 +93,6 @@ class SeaWaterController extends Controller
         $data = SeaWater::where('tw', $request->input('tw'))
             ->where('tahun', $request->input('tahun'))
             ->whereNot('is_status', 0)
-
             ->orderBy('tanggal_cek', 'asc')
             ->get();
 

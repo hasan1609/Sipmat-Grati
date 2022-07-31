@@ -149,6 +149,7 @@ Route::get('/getschedule_pelaksana_pencahayaan', [SchedulePencahayaanController:
 Route::post('/seawater', [SeaWaterController::class, 'insert_seawater']);
 Route::post('/update_seawater', [SeaWaterController::class, 'update_seawater']);
 Route::get('/seawater/{tw?&tahun}', [SeaWaterController::class, 'get_seawater']);
+Route::get('/hasil_seawater/{tw?&tahun}', [SeaWaterController::class, 'gethasil_seawater']);
 Route::post('/hapus_seawater', [SeaWaterController::class, 'hapus_seawater']);
 Route::get('/seawater_pelaksana', [SeaWaterController::class, 'seawater_pelaksana']);
 Route::post('/return_seawater', [SeaWaterController::class, 'return_seawater']);
@@ -164,6 +165,7 @@ Route::get('/ffblok_pelaksana', [FFblok1Controller::class, 'ffblok_pelaksana']);
 Route::post('/return_ffblok', [FFblok1Controller::class, 'return_ffblok']);
 Route::post('/acc_ffblok', [FFblok1Controller::class, 'acc_ffblok']);
 Route::post('/ffblok_pdf', [FFblok1Controller::class, 'ffblok_pdf']);
+Route::get('/hasil_ffblok1/{tw?&tahun}', [FFblok1Controller::class, 'gethasil_ffblok']);
 
 //FFBLOK2
 Route::post('/schedule_ffblok2', [FFblok2Controller::class, 'insert_ffblok']);
@@ -174,6 +176,7 @@ Route::get('/ffblok2_pelaksana', [FFblok2Controller::class, 'ffblok_pelaksana'])
 Route::post('/return_ffblok2', [FFblok2Controller::class, 'return_ffblok']);
 Route::post('/acc_ffblok2', [FFblok2Controller::class, 'acc_ffblok']);
 Route::post('/ffblok2_pdf', [FFblok2Controller::class, 'ffblok_pdf']);
+Route::get('/hasil_ffblok2/{tw?&tahun}', [FFblok2Controller::class, 'gethasil_ffblok']);
 
 //EDGBLOK!
 Route::post('/schedule_edgblok1', [EdgBlok1Controller::class, 'insert_edgblok1']);
@@ -184,6 +187,7 @@ Route::get('/edgblok1_pelaksana', [EdgBlok1Controller::class, 'edgblok1_pelaksan
 Route::post('/return_edgblok1', [EdgBlok1Controller::class, 'return_edgblok1']);
 Route::post('/acc_edgblok1', [EdgBlok1Controller::class, 'acc_edgblok1']);
 Route::post('/edgblok1_pdf', [EdgBlok1Controller::class, 'edgblok1_pdf']);
+Route::get('/hasil_edgblok1/{tw?&tahun}', [EdgBlok1Controller::class, 'gethasil_edgblok1']);
 
 // EDGBLOK2
 Route::post('/schedule_edgblok2', [EdgBlok2Controller::class, 'insert_edgblok2']);
@@ -194,6 +198,7 @@ Route::get('/edgblok2_pelaksana', [EdgBlok2Controller::class, 'edgblok2_pelaksan
 Route::post('/return_edgblok2', [EdgBlok2Controller::class, 'return_edgblok2']);
 Route::post('/acc_edgblok2', [EdgBlok2Controller::class, 'acc_edgblok2']);
 Route::post('/edgblok2_pdf', [EdgBlok2Controller::class, 'edgblok2_pdf']);
+Route::get('/hasil_edgblok2/{tw?&tahun}', [EdgBlok2Controller::class, 'gethasil_edgblok2']);
 
 // EDGBLOK3
 Route::post('/schedule_edgblok3', [EdgBlok3Controller::class, 'insert_edgblok3']);
@@ -204,6 +209,7 @@ Route::get('/edgblok3_pelaksana', [EdgBlok3Controller::class, 'edgblok3_pelaksan
 Route::post('/return_edgblok3', [EdgBlok3Controller::class, 'return_edgblok3']);
 Route::post('/acc_edgblok3', [EdgBlok3Controller::class, 'acc_edgblok3']);
 Route::post('/edgblok3_pdf', [EdgBlok3Controller::class, 'edgblok3_pdf']);
+Route::get('/hasil_edgblok3/{tw?&tahun}', [EdgBlok3Controller::class, 'gethasil_edgblok3']);
 
 // DAMKAR
 Route::post('/schedule_damkar', [DamkarController::class, 'insert_damkar']);
@@ -214,6 +220,7 @@ Route::get('/damkar_pelaksana', [DamkarController::class, 'damkar_pelaksana']);
 Route::post('/return_damkar', [DamkarController::class, 'return_damkar']);
 Route::post('/acc_damkar', [DamkarController::class, 'acc_damkar']);
 Route::post('/damkar_pdf/{id}', [DamkarController::class, 'damkar_pdf']);
+Route::get('/hasil_damkar/{tw?&tahun}', [DamkarController::class, 'gethasil_damkar']);
 
 // AMBULANCE
 Route::post('/schedule_ambulance', [AmbulanceController::class, 'insert_ambulance']);
@@ -224,3 +231,4 @@ Route::get('/ambulance_pelaksana', [AmbulanceController::class, 'ambulance_pelak
 Route::post('/return_ambulance', [AmbulanceController::class, 'return_ambulance']);
 Route::post('/acc_ambulance', [AmbulanceController::class, 'acc_ambulance']);
 Route::post('/ambulance_pdf/{id}', [AmbulanceController::class, 'ambulance_pdf']);
+Route::get('/hasil_ambulance/{tw?&tahun}', [AmbulanceController::class, 'gethasil_ambulance']);

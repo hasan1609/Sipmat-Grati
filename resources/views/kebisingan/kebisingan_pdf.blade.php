@@ -82,7 +82,7 @@
                 <th class="tg-b6io" rowspan="2">SHIFT</th>
                 <th class="tg-9wq8" rowspan="2">TANGGAL<br> PENGUKURAN</th>
                 <th class="tg-b6io" colspan="4">HASIL PENGUKURAN (dB)</th>
-                <th class="tg-b6io" rowspan="2">NAB KEBISINGAN</th>
+                <th class="tg-b6io" rowspan="2">STATUS</th>
                 <th class="tg-b6io" rowspan="2">KETERANGAN TAMBAHAN</th>
             </tr>
             <tr>
@@ -94,33 +94,34 @@
         </thead>
         <tbody>
             @foreach ($data as $item)
-            <tr>
-                <td class="tg-b6io" colspan="5">{{$loop->iteration}}</td>
-                <td class="tg-b6io">{{$item->kebisingan->lokasi}}</td>
-                <td class="tg-b6io">{{$item->kebisingan->kode}}</td>
-                <td class="tg-b6io">{{$item->shift}}</td>
-                <td class="tg-9wq8">{{$item->tanggal_cek}}</td>
-                <td class="tg-b6io">{{$item->dbx1}}</td>
-                <td class="tg-b6io">{{$item->dbx2}}</td>
-                <td class="tg-b6io">{{$item->dbx3}}</td>
-                <td class="tg-b6io">{{$item->dbrata2}}</td>
-                <td class="tg-b6io">{{$item->nab_kebisingan}}</td>
-                <td class="tg-b6io">{{$item->keterangan}}</td>
-            </tr>
-                
+                <tr>
+                    <td class="tg-b6io" colspan="5">{{ $loop->iteration }}</td>
+                    <td class="tg-b6io">{{ $item->kebisingan->lokasi }}</td>
+                    <td class="tg-b6io">{{ $item->kebisingan->kode }}</td>
+                    <td class="tg-b6io">{{ $item->shift }}</td>
+                    <td class="tg-9wq8">{{ $item->tanggal_cek }}</td>
+                    <td class="tg-b6io">{{ $item->dbx1 }}</td>
+                    <td class="tg-b6io">{{ $item->dbx2 }}</td>
+                    <td class="tg-b6io">{{ $item->dbx3 }}</td>
+                    <td class="tg-b6io">{{ $item->dbrata2 }}</td>
+                    <td class="tg-b6io">{{ strtoupper($item->status) }}</td>
+                    <td class="tg-b6io">{{ $item->keterangan }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>
-    <p><i><b>* Dasar Hukum : PER.13/MEN/X/2011 tentang Nilai Ambang Batas Faktor Fisika dan Kimia di Tempat Kerja</b></i></p>
+    <p><i><b>* Dasar Hukum : PER.13/MEN/X/2011 tentang Nilai Ambang Batas Faktor Fisika dan Kimia di Tempat
+                Kerja</b></i></p>
     <!-- ************************************************************************** -->
     <br><br>
 
     <table class="tg">
         <thead>
             <tr>
-                <td class="tg-wk8r" rowspan="4">Mengetahui<br><br>{{$jabatan}}<br><br><br>
-                    <img src="{{public_path('storage/ttd-kebisingan/kebisingan-ttd.png')}}" alt="Image" width="100" height="100">
-                    <br>{{$nama}}
+                <td class="tg-wk8r" rowspan="4">Mengetahui<br><br>{{ $jabatan }}<br><br><br>
+                    <img src="{{ public_path('storage/ttd-kebisingan/kebisingan-ttd.png') }}" alt="Image"
+                        width="100" height="100">
+                    <br>{{ $nama }}
                 </td>
             </tr>
             <tr>
